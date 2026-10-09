@@ -1,0 +1,33 @@
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# Backend
+baggage-track/target/
+baggage-track/bin/
+
+# Generated logs/files
+*.log
+baggage-track/cp.txt
+
+# Secrets and environment files
+.env
+*.env
+application-local.properties
+
+# IDE
+.vscode/
+.idea/
+
+# Java compiled files
+*.class
+# Environment files and secrets
+.env
+.env.*
+**/.env
+**/.env.*
+
+# Crash reports and generated logs
+*.log
+*.hprof
+hs_err_pid*

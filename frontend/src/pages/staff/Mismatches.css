@@ -1,0 +1,325 @@
+/* ============================= */
+/* MISMATCH PAGE */
+/* ============================= */
+
+.mismatch-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 30px;
+  margin-top: 25px;
+  box-shadow: 0 10px 30px rgba(20, 50, 90, 0.08);
+}
+
+.mismatch-card-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #e5ebf2;
+  margin-bottom: 28px;
+}
+
+.mismatch-icon {
+  width: 55px;
+  height: 55px;
+  border-radius: 15px;
+  background: #fff3df;
+  color: #d97706;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+}
+
+.mismatch-card-header h2 {
+  margin: 0;
+  color: #17324d;
+  font-size: 23px;
+}
+
+.mismatch-card-header p {
+  margin: 6px 0 0;
+  color: #718096;
+  font-size: 14px;
+}
+
+
+/* ============================= */
+/* FORM */
+/* ============================= */
+
+.mismatch-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 23px;
+}
+
+.mismatch-form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.mismatch-form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.mismatch-form-group label {
+  margin-bottom: 8px;
+  color: #263b53;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.mismatch-form-group input,
+.mismatch-form-group textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 15px;
+  border: 1px solid #d8e1eb;
+  border-radius: 10px;
+  background: #f9fbfd;
+  color: #263b53;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.mismatch-form-group input {
+  height: 48px;
+}
+
+.mismatch-form-group textarea {
+  resize: vertical;
+}
+
+.mismatch-form-group input:focus,
+.mismatch-form-group textarea:focus {
+  border-color: #3b82f6;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.mismatch-form-group small {
+  margin-top: 7px;
+  color: #8a9bb0;
+  font-size: 12px;
+}
+
+
+/* ============================= */
+/* BUTTONS */
+/* ============================= */
+
+.mismatch-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.clear-btn,
+.check-mismatch-btn {
+  border: none;
+  border-radius: 10px;
+  padding: 12px 22px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.clear-btn {
+  background: #edf2f7;
+  color: #4a5568;
+}
+
+.clear-btn:hover {
+  background: #e2e8f0;
+}
+
+.check-mismatch-btn {
+  background: #d97706;
+  color: #ffffff;
+}
+
+.check-mismatch-btn:hover {
+  background: #b45309;
+  transform: translateY(-1px);
+}
+
+
+/* ============================= */
+/* MISMATCH RESULT */
+/* ============================= */
+
+.mismatch-result {
+  display: flex;
+  gap: 16px;
+  margin-top: 28px;
+  padding: 20px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 13px;
+}
+
+.mismatch-result-icon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #f97316;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+}
+
+.mismatch-result-content {
+  flex: 1;
+}
+
+.mismatch-result-content > strong {
+  display: block;
+  color: #9a3412;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.mismatch-result-content > p {
+  margin: 0 0 18px;
+  color: #7c4a2d;
+  font-size: 14px;
+}
+
+.mismatch-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.mismatch-details span {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 10px 12px;
+  background: #ffffff;
+  border-radius: 8px;
+  color: #7c4a2d;
+  font-size: 12px;
+}
+
+.mismatch-details strong {
+  color: #263b53;
+  font-size: 14px;
+}
+
+
+/* ============================= */
+/* PROCESS CARD */
+/* ============================= */
+
+.mismatch-info-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 28px 30px;
+  margin-top: 25px;
+  box-shadow: 0 10px 30px rgba(20, 50, 90, 0.08);
+}
+
+.mismatch-info-card h2 {
+  margin: 0 0 25px;
+  color: #17324d;
+  font-size: 20px;
+}
+
+.mismatch-process {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.process-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 15px;
+  background: #f8fafc;
+  border-radius: 12px;
+}
+
+.process-item > span {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #eaf4ff;
+  color: #1976d2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.process-item strong {
+  display: block;
+  color: #263b53;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.process-item p {
+  margin: 0;
+  color: #7a8797;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+
+/* ============================= */
+/* RESPONSIVE */
+/* ============================= */
+
+@media (max-width: 1000px) {
+
+  .mismatch-process {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+@media (max-width: 700px) {
+
+  .mismatch-card,
+  .mismatch-info-card {
+    padding: 20px;
+  }
+
+  .mismatch-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mismatch-form-group.full-width {
+    grid-column: auto;
+  }
+
+  .mismatch-actions {
+    flex-direction: column;
+  }
+
+  .clear-btn,
+  .check-mismatch-btn {
+    width: 100%;
+  }
+
+  .mismatch-details {
+    grid-template-columns: 1fr;
+  }
+
+  .mismatch-process {
+    grid-template-columns: 1fr;
+  }
+
+}

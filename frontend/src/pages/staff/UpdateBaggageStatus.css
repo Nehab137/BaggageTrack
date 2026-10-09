@@ -1,0 +1,291 @@
+/* ============================= */
+/* UPDATE BAGGAGE STATUS PAGE */
+/* ============================= */
+
+.update-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 30px;
+  margin-top: 25px;
+  box-shadow: 0 10px 30px rgba(20, 50, 90, 0.08);
+}
+
+.update-card-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 30px;
+}
+
+.update-icon {
+  width: 55px;
+  height: 55px;
+  border-radius: 15px;
+  background: #eaf4ff;
+  color: #1976d2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.update-card-header h2 {
+  margin: 0;
+  color: #17324d;
+  font-size: 23px;
+}
+
+.update-card-header p {
+  margin: 6px 0 0;
+  color: #718096;
+  font-size: 14px;
+}
+
+
+/* ============================= */
+/* FORM */
+/* ============================= */
+
+.update-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.update-form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.update-form-group label {
+  font-weight: 600;
+  color: #263b53;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.update-form-group input,
+.update-form-group select,
+.update-form-group textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 15px;
+  border: 1px solid #d9e2ec;
+  border-radius: 10px;
+  background: #f9fbfd;
+  color: #263b53;
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s ease;
+  font-family: inherit;
+}
+
+.update-form-group input:focus,
+.update-form-group select:focus,
+.update-form-group textarea:focus {
+  border-color: #3b82f6;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.update-form-group textarea {
+  resize: vertical;
+}
+
+.update-form-group small {
+  margin-top: 7px;
+  color: #8a99aa;
+  font-size: 12px;
+}
+
+
+/* ============================= */
+/* BUTTONS */
+/* ============================= */
+
+.update-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.clear-btn,
+.update-btn {
+  border: none;
+  border-radius: 10px;
+  padding: 12px 22px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.clear-btn {
+  background: #edf2f7;
+  color: #4a5568;
+}
+
+.clear-btn:hover {
+  background: #e2e8f0;
+}
+
+.update-btn {
+  background: #1976d2;
+  color: #ffffff;
+}
+
+.update-btn:hover {
+  background: #125ca8;
+  transform: translateY(-1px);
+}
+
+.update-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+
+/* ============================= */
+/* SUCCESS / ERROR */
+/* ============================= */
+
+.status-result {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-top: 25px;
+  padding: 18px;
+  border-radius: 13px;
+}
+
+.success-result {
+  background: #ecfdf3;
+  border: 1px solid #b7ebc6;
+}
+
+.error-result {
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+}
+
+.status-result .result-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.success-result .result-icon {
+  background: #22c55e;
+  color: #ffffff;
+}
+
+.error-result .result-icon {
+  background: #ef4444;
+  color: #ffffff;
+}
+
+.status-result strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #263b53;
+}
+
+.status-result p {
+  margin: 0;
+  color: #667085;
+  font-size: 14px;
+}
+
+
+/* ============================= */
+/* BAGGAGE JOURNEY */
+/* ============================= */
+
+.status-flow-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 25px 30px;
+  margin-top: 25px;
+  box-shadow: 0 10px 30px rgba(20, 50, 90, 0.08);
+}
+
+.status-flow-card h2 {
+  margin: 0 0 20px;
+  color: #17324d;
+  font-size: 20px;
+}
+
+.status-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.status-flow span {
+  background: #eaf4ff;
+  color: #1976d2;
+  padding: 9px 13px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.status-flow b {
+  color: #9aa8b8;
+}
+
+.status-flow-card > p {
+  margin: 18px 0 0;
+  color: #7a8797;
+  font-size: 13px;
+  text-align: center;
+}
+
+
+/* ============================= */
+/* RESPONSIVE */
+/* ============================= */
+
+@media (max-width: 900px) {
+
+  .update-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .update-card,
+  .status-flow-card {
+    padding: 20px;
+  }
+
+  .update-card-header {
+    align-items: flex-start;
+  }
+
+  .update-actions {
+    flex-direction: column;
+  }
+
+  .clear-btn,
+  .update-btn {
+    width: 100%;
+  }
+
+  .status-flow {
+    justify-content: flex-start;
+  }
+
+}

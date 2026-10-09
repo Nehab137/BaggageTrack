@@ -1,0 +1,186 @@
+/* =========================================
+   STAFF PROFILE CONTENT
+   Layout is inherited from Mismatches.css
+========================================= */
+
+
+.staff-profile-card {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #dce5ec;
+  border-radius: 10px;
+  padding: 32px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 16px rgba(15, 42, 67, 0.05);
+}
+
+
+/* =========================================
+   PROFILE TOP
+========================================= */
+
+.staff-profile-top {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+
+.staff-profile-avatar {
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  background: #3b82c4;
+  color: #ffffff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 34px;
+  font-weight: 700;
+}
+
+
+.staff-profile-name h2 {
+  margin: 0;
+  color: #0f2a43;
+  font-size: 28px;
+}
+
+
+.staff-profile-name p {
+  margin: 5px 0 0;
+  color: #58718a;
+  font-size: 16px;
+}
+
+
+/* =========================================
+   DIVIDER
+========================================= */
+
+.staff-profile-divider {
+  height: 1px;
+  background: #e1e8ee;
+  margin-top: 28px;
+}
+
+
+/* =========================================
+   PROFILE GRID
+========================================= */
+
+.staff-profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+
+.staff-profile-item {
+  padding: 25px 18px 24px 0;
+  border-bottom: 1px solid #e1e8ee;
+  box-sizing: border-box;
+}
+
+
+.staff-profile-item:nth-child(even) {
+  padding-left: 32px;
+  border-left: 1px solid #e1e8ee;
+}
+
+
+.staff-profile-item span {
+  display: block;
+  color: #648099;
+  font-size: 14px;
+  margin-bottom: 7px;
+}
+
+
+.staff-profile-item strong {
+  color: #0f2a43;
+  font-size: 16px;
+}
+
+
+/* =========================================
+   STATUS
+========================================= */
+
+.staff-profile-status {
+  color: #0aa68b !important;
+}
+
+
+/* =========================================
+   INFORMATION BOX
+========================================= */
+
+.staff-profile-info {
+  margin-top: 28px;
+  padding: 20px 22px;
+
+  background: #f1f8fb;
+  border-radius: 9px;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  box-sizing: border-box;
+}
+
+
+.staff-profile-info-icon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+
+  border-radius: 50%;
+  background: #e1f7f2;
+  color: #0aa68b;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 20px;
+  font-weight: 700;
+}
+
+
+.staff-profile-info strong {
+  display: block;
+  color: #0f2a43;
+  font-size: 15px;
+}
+
+
+.staff-profile-info p {
+  margin: 5px 0 0;
+  color: #58718a;
+  font-size: 14px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 700px) {
+
+  .staff-profile-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .staff-profile-item:nth-child(even) {
+    padding-left: 0;
+    border-left: none;
+  }
+
+  .staff-profile-card {
+    padding: 24px;
+  }
+
+}
