@@ -121,6 +121,12 @@ public class SecurityConfig {
                             "/api/baggage-history/baggage/**"
                     ).permitAll()
 
+                    // Public Actuator health endpoint for Render
+                    .requestMatchers(
+                            "/actuator/health",
+                            "/actuator/health/**"
+                    ).permitAll()
+
                     // Admin
                     .requestMatchers("/api/admin/**")
                     .hasRole("ADMIN")
