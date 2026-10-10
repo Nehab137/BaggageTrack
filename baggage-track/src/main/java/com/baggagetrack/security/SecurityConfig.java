@@ -1,3 +1,4 @@
+
 package com.baggagetrack.security;
 
 import org.springframework.context.annotation.Bean;
@@ -25,7 +26,8 @@ public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
-    public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter) {
+    public SecurityConfig(
+            JwtAuthenticationFilter jwtAuthenticationFilter) {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
     }
 
@@ -40,14 +42,19 @@ public class SecurityConfig {
         return configuration.getAuthenticationManager();
     }
 
-    // CORS configuration for React frontend
+    // CORS configuration for local and deployed React frontends
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
 
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowedOrigins(
-                List.of("http://localhost:5173")
+                List.of(
+                        "http://localhost:5173",
+                        "https://baggage-track.vercel.app",
+                        "https://baggage-track-git-main-nehab137.vercel.app",
+                        "https://baggage-track-5dma2rt5l-nehab137.vercel.app"
+                )
         );
 
         configuration.setAllowedMethods(
@@ -122,7 +129,7 @@ public class SecurityConfig {
                     .requestMatchers("/api/staff/**")
                     .hasAnyRole("STAFF", "ADMIN")
 
-                    // Everything else requires authentication
+                    // Other endpoints require authentication
                     .anyRequest().authenticated()
             )
 
