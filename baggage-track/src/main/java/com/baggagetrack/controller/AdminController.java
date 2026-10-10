@@ -16,6 +16,8 @@ import com.baggagetrack.service.FlightService;
 import com.baggagetrack.service.NotificationService;
 import com.baggagetrack.service.UserService;
 
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +26,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/admin")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = {
+        "http://localhost:5173",
+        "https://baggage-track.vercel.app"
+})
 @PreAuthorize("hasRole('ADMIN')")
 public class AdminController {
 
@@ -54,7 +59,6 @@ public class AdminController {
         this.baggageMismatchService = baggageMismatchService;
     }
 
-
     // =====================================================
     // USER MANAGEMENT
     // =====================================================
@@ -62,129 +66,70 @@ public class AdminController {
     // Get all users
     @GetMapping("/users")
     public ResponseEntity<List<User>> getAllUsers() {
-
-        return ResponseEntity.ok(
-                userService.getAllUsers()
-        );
+        return ResponseEntity.ok(userService.getAllUsers());
     }
 
-
-    // ADMIN CAN CREATE PASSENGER / STAFF / ADMIN
+    // Create passenger, staff, or admin
     @PostMapping("/users")
-    public ResponseEntity<?> createUser(
-            @RequestBody User user) {
+    public ResponseEntity<?> createUser(@RequestBody User user) {
 
-        // -----------------------------------------
-        // Validate Name
-        // -----------------------------------------
-
-        if (user.getName() == null ||
-                user.getName().isBlank()) {
-
-            return ResponseEntity
-                    .badRequest()
-                    .body("Name is required");
+        if (user.getName() == null || user.getName().isBlank()) {
+            return ResponseEntity.badRequest().body("Name is required");
         }
 
-
-        // -----------------------------------------
-        // Validate Email
-        // -----------------------------------------
-
-        if (user.getEmail() == null ||
-                user.getEmail().isBlank()) {
-
-            return ResponseEntity
-                    .badRequest()
-                    .body("Email is required");
+        if (user.getEmail() == null || user.getEmail().isBlank()) {
+            return ResponseEntity.badRequest().body("Email is required");
         }
 
-
-        // -----------------------------------------
-        // Validate Password
-        // -----------------------------------------
-
-        if (user.getPassword() == null ||
-                user.getPassword().isBlank()) {
-
-            return ResponseEntity
-                    .badRequest()
-                    .body("Password is required");
+        if (user.getPassword() == null || user.getPassword().isBlank()) {
+            return ResponseEntity.badRequest().body("Password is required");
         }
-
-
-        // -----------------------------------------
-        // Role
-        // -----------------------------------------
 
         String role = user.getRole();
 
-        if (role == null ||
-                role.isBlank()) {
-
+        if (role == null || role.isBlank()) {
             role = "PASSENGER";
-
         } else {
-
             role = role.toUpperCase();
         }
 
-
-        // -----------------------------------------
-        // Validate Role
-        // -----------------------------------------
-
-        if (!role.equals("PASSENGER") &&
-                !role.equals("STAFF") &&
-                !role.equals("ADMIN")) {
-
-            return ResponseEntity
-                    .badRequest()
-                    .body(
-                            "Role must be PASSENGER, STAFF, or ADMIN"
-                    );
+        if (!role.equals("PASSENGER")
+                && !role.equals("STAFF")
+                && !role.equals("ADMIN")) {
+            return ResponseEntity.badRequest()
+                    .body("Role must be PASSENGER, STAFF, or ADMIN");
         }
 
-
-        // Set normalized role
         user.setRole(role);
 
-
-        // -----------------------------------------
-        // Create User
-        // -----------------------------------------
-
         try {
-
-            User savedUser =
-                    userService.registerUser(user);
-
+            User savedUser = userService.registerUser(user);
             return ResponseEntity.ok(savedUser);
 
         } catch (Exception error) {
-
-            return ResponseEntity
-                    .badRequest()
-                    .body(
-                            "Unable to create user. " +
-                            "Email may already exist."
-                    );
+            return ResponseEntity.badRequest()
+                    .body("Unable to create user. Email may already exist.");
         }
     }
 
-
     // Delete user
     @DeleteMapping("/users/{id}")
-    public ResponseEntity<String> deleteUser(
-            @PathVariable Long id) {
+    public ResponseEntity<String> deleteUser(@PathVariable Long id) {
 
-        userService.deleteUser(id);
+        try {
+            userService.deleteUser(id);
 
-        return ResponseEntity.ok(
-                "User deleted successfully"
-        );
+            return ResponseEntity.ok("User deleted successfully");
+
+        } catch (DataIntegrityViolationException error) {
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body("Cannot delete this user because baggage or other records are linked to their account.");
+
+        } catch (Exception error) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Unable to delete user. Please try again.");
+        }
     }
-
 
     // =====================================================
     // FLIGHT MANAGEMENT
@@ -193,36 +138,21 @@ public class AdminController {
     // Get all flights
     @GetMapping("/flights")
     public ResponseEntity<List<Flight>> getAllFlights() {
-
-        return ResponseEntity.ok(
-                flightService.getAllFlights()
-        );
+        return ResponseEntity.ok(flightService.getAllFlights());
     }
-
 
     // Add flight
     @PostMapping("/flights")
-    public ResponseEntity<Flight> addFlight(
-            @RequestBody Flight flight) {
-
-        return ResponseEntity.ok(
-                flightService.addFlight(flight)
-        );
+    public ResponseEntity<Flight> addFlight(@RequestBody Flight flight) {
+        return ResponseEntity.ok(flightService.addFlight(flight));
     }
-
 
     // Delete flight
     @DeleteMapping("/flights/{id}")
-    public ResponseEntity<String> deleteFlight(
-            @PathVariable Long id) {
-
+    public ResponseEntity<String> deleteFlight(@PathVariable Long id) {
         flightService.deleteFlight(id);
-
-        return ResponseEntity.ok(
-                "Flight deleted successfully"
-        );
+        return ResponseEntity.ok("Flight deleted successfully");
     }
-
 
     // =====================================================
     // BAGGAGE MANAGEMENT
@@ -231,25 +161,15 @@ public class AdminController {
     // Get all baggage
     @GetMapping("/baggage")
     public ResponseEntity<List<Baggage>> getAllBaggage() {
-
-        return ResponseEntity.ok(
-                baggageService.getAllBaggage()
-        );
+        return ResponseEntity.ok(baggageService.getAllBaggage());
     }
-
 
     // Delete baggage
     @DeleteMapping("/baggage/{id}")
-    public ResponseEntity<String> deleteBaggage(
-            @PathVariable Long id) {
-
+    public ResponseEntity<String> deleteBaggage(@PathVariable Long id) {
         baggageService.deleteBaggage(id);
-
-        return ResponseEntity.ok(
-                "Baggage deleted successfully"
-        );
+        return ResponseEntity.ok("Baggage deleted successfully");
     }
-
 
     // =====================================================
     // BAGGAGE HISTORY
@@ -257,12 +177,8 @@ public class AdminController {
 
     @GetMapping("/baggage-history")
     public ResponseEntity<List<BaggageStatusHistory>> getAllHistory() {
-
-        return ResponseEntity.ok(
-                historyService.getAllHistory()
-        );
+        return ResponseEntity.ok(historyService.getAllHistory());
     }
-
 
     // =====================================================
     // BAGGAGE MISMATCHES
@@ -270,12 +186,8 @@ public class AdminController {
 
     @GetMapping("/mismatches")
     public ResponseEntity<List<BaggageMismatch>> getAllMismatches() {
-
-        return ResponseEntity.ok(
-                baggageMismatchService.getAllMismatches()
-        );
+        return ResponseEntity.ok(baggageMismatchService.getAllMismatches());
     }
-
 
     // =====================================================
     // NOTIFICATIONS
@@ -283,12 +195,8 @@ public class AdminController {
 
     @GetMapping("/notifications")
     public ResponseEntity<List<Notification>> getAllNotifications() {
-
-        return ResponseEntity.ok(
-                notificationService.getAllNotifications()
-        );
+        return ResponseEntity.ok(notificationService.getAllNotifications());
     }
-
 
     // =====================================================
     // ADMIN STATISTICS
@@ -296,9 +204,6 @@ public class AdminController {
 
     @GetMapping("/statistics")
     public ResponseEntity<AdminStats> getStatistics() {
-
-        return ResponseEntity.ok(
-                adminStatsService.getStatistics()
-        );
+        return ResponseEntity.ok(adminStatsService.getStatistics());
     }
 }
