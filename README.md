@@ -154,7 +154,7 @@ BaggageTrack/
     └── ...
 ```
 
-*Note: The directory listing is a simplified overview; exact filenames may vary.*
+
 
 ## 💻 Local Installation and Setup
 
